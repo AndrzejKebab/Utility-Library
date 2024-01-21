@@ -1,0 +1,24 @@
+{
+    "name": "UtilityLibrary.Unity.Runtime",
+    "rootNamespace": "UtilityLibrary.Unity.Runtime",
+    "references": [
+        "GUID:808629542ef9e444c9204d21d53ee477",
+        "GUID:df380645f10b7bc4b97d4f5eb6303d95",
+        "GUID:d8b63aba1907145bea998dd612889d6b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.mathematics",
+            "expression": "1",
+            "define": "ENABLED_UNITY_MATHEMATICS"
+        }
+    ],
+    "noEngineReferences": false
+}
