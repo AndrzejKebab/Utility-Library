@@ -1,11 +1,12 @@
 {
-  "name": "com.anddrzejkebab.utilitylibrary",
+  "name": "com.andrzejkebab.utilitylibrary",
+  "version": "1.0.0",
   "displayName": "Utility Library",
-  "description": "Utility Library, a growing collection of handy extension methods, helpers, attributes, and other utilities designed to enhance and simplify your Unity development workflow. Whether you're a seasoned developer or just starting, this library aims to provide tools that will help streamline your coding process and add efficiency to your projects.",
-  "version": "0.0.1",
+  "description": "Utility Library, a growing collection of handy extension methods, helpers, attributes, and other utilities designed to enhance and simplify your C# and Unity development workflow. Whether you're a seasoned developer or just starting, this library aims to provide tools that will help streamline your coding process and add efficiency to your projects.",
+  "documentationUrl": "https://github.com/AndrzejKebab/Utility-Library/wiki",
+  "changelogUrl": "https://github.com/AndrzejKebab/Utility-Library/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/AndrzejKebab/Utility-Library/blob/main/README.md",
   "author": {
-    "name": "Andrzej Kebab",
-    "url": "https://github.com/AndrzejKebab/Utility-Library.git"
-  },
-  "documentationUrl": "https://github.com/AndrzejKebab/Utility-Library/blob/main/README.md"
+    "name": "AndrzejKebab"
+  }
 }
