@@ -1,6 +1,16 @@
 ﻿# Changelog
 
-## ## [1.1.0] - 22-01-2024
+## [1.2.0] - 23-01-2024
+
+### Added
+
+#### ArrayExtensions
+
+- `Sort` method to sort the elements in the entire array using the specified comparison.
+- `Sort` method to sort a range of elements in the array using the specified comparer.
+- `RandSort` method to sort the elements in the array in random order.
+
+## [1.1.0] - 22-01-2024
 
 ### Added
 

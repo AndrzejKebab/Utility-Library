@@ -5,8 +5,10 @@ namespace UtilityLibrary.Core
 {
     public static partial class ArrayExtensions
     {
-        #region Null / Empty
-        public static bool IsNullOrEmpty(this Array array) => array == null || array.Length == 0;
+		internal static Random Rand = new();
+
+		#region Null / Empty
+		public static bool IsNullOrEmpty(this Array array) => array == null || array.Length == 0;
 
         public static bool IsEmpty(this Array array)
         {
@@ -256,6 +258,79 @@ namespace UtilityLibrary.Core
 				result[i] = array[i];
 			}
 			return result;
+		}
+		#endregion
+
+		#region Sort
+		/// <summary>
+		/// Sorts the elements in the entire array using the specified comparison.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of the array.</typeparam>
+		/// <param name="array">The one-dimensional array to sort.</param>
+		/// <param name="comparison">The comparison to use when comparing elements.</param>
+		/// <returns>The sorted array.</returns>
+		public static T[] Sort<T>(this T[] array, Comparison<T> comparison)
+		{
+			if (comparison == null)
+			{
+				throw new ArgumentNullException();
+			}
+
+			if (array.Length == 0)
+			{
+				return array;
+			}
+
+			Array.Sort(array, comparison);
+			return array;
+		}
+
+		/// <summary>
+		/// Sorts a range of elements in the array using the specified comparer.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of the array.</typeparam>
+		/// <param name="array">The one-dimensional array to sort.</param>
+		/// <param name="index">The zero-based starting index of the range to sort.</param>
+		/// <param name="length">The length of the range to sort.</param>
+		/// <param name="comparer">The comparer to use when comparing elements.</param>
+		/// <returns>The sorted array.</returns>
+		public static T[] Sort<T>(this T[] array, int index, int length, IComparer<T> comparer)
+		{
+			if (comparer == null)
+			{
+				throw new ArgumentNullException();
+			}
+
+			if (array.Length == 0)
+			{
+				return array;
+			}
+
+			Array.Sort(array, index, length, comparer);
+			return array;
+		}
+
+		/// <summary>
+		/// Sorts the elements in the array in random order.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of the array.</typeparam>
+		/// <param name="array">The one-dimensional array to sort.</param>
+		/// <returns>The array with elements in random order.</returns>
+		public static T[] RandSort<T>(this T[] array)
+		{
+			var count = array.Length * 3;
+			for (var i = 0; i < count; i++)
+			{
+				var index1 = Rand.Next(0, array.Length);
+				var item1 = array[index1];
+				var index2 = Rand.Next(0, array.Length);
+				var item2 = array[index2];
+				var temp = item2;
+				array[index2] = item1;
+				array[index1] = temp;
+			}
+
+			return array;
 		}
 		#endregion
 	}
