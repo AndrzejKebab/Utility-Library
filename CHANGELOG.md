@@ -1,6 +1,48 @@
 ﻿# Changelog
 
-## [1.0.0] - 2024-01-21
+## ## [1.1.0] - 22-01-2024
+
+### Added
+
+#### BoolExtensions
+
+- `And` extension method:
+  - Overloads:
+    - `And(this bool boolean, Func<bool> other)`: Performs a logical AND operation on the first boolean value and a function returning a boolean.
+    - `And<T>(this bool boolean, Func<T, bool> other, T value)`: Performs a logical AND operation on the first boolean value and a function taking one parameter and returning a boolean.
+    - `And<T1, T2>(this bool boolean, Func<T1, T2, bool> other, T1 value1, T2 value2)`: Performs a logical AND operation on the first boolean value and functions taking two parameters and returning a boolean.
+    - `And<T1, T2, T3>(this bool boolean, Func<T1, T2, T3, bool> other, T1 value1, T2 value2, T3 value3)`: Performs a logical AND operation on the first boolean value and functions taking three parameters and returning a boolean.
+    - `And<T1, T2, T3, T4>(this bool boolean, Func<T1, T2, T3, T4, bool> other, T1 value1, T2 value2, T3 value3, T4 value4)`: Performs a logical AND operation on the first boolean value and functions taking four parameters and returning a boolean.
+    - `And<T1, T2, T3, T4, T5>(this bool boolean, Func<T1, T2, T3, T4, T5, bool> other, T1 value1, T2 value2, T3 value3, T4 value4, T5 value5)`: Performs a logical AND operation on the first boolean value and functions taking five parameters and returning a boolean.
+
+- `AndNot` extension method:
+  - Overloads:
+    - `AndNot(this bool boolean, Func<bool> other)`: Performs a logical AND NOT operation on the first boolean value and a function returning a boolean.
+    - `AndNot<T>(this bool boolean, Func<T, bool> other, T value)`: Performs a logical AND NOT operation on the first boolean value and a function taking one parameter and returning a boolean.
+    - `AndNot<T1, T2>(this bool boolean, Func<T1, T2, bool> other, T1 value1, T2 value2)`: Performs a logical AND NOT operation on the first boolean value and functions taking two parameters and returning a boolean.
+    - `AndNot<T1, T2, T3>(this bool boolean, Func<T1, T2, T3, bool> other, T1 value1, T2 value2, T3 value3)`: Performs a logical AND NOT operation on the first boolean value and functions taking three parameters and returning a boolean.
+    - `AndNot<T1, T2, T3, T4>(this bool boolean, Func<T1, T2, T3, T4, bool> other, T1 value1, T2 value2, T3 value3, T4 value4)`: Performs a logical AND NOT operation on the first boolean value and functions taking four parameters and returning a boolean.
+    - `AndNot<T1, T2, T3, T4, T5>(this bool boolean, Func<T1, T2, T3, T4, T5, bool> other, T1 value1, T2 value2, T3 value3, T4 value4, T5 value5)`: Performs a logical AND NOT operation on the first boolean value and functions taking five parameters and returning a boolean.
+
+- `Or` extension method:
+  - Overloads:
+    - `Or(this bool boolean, Func<bool> other)`: Performs a logical OR operation on the first boolean value and a function returning a boolean.
+    - `Or<T>(this bool boolean, Func<T, bool> other, T value)`: Performs a logical OR operation on the first boolean value and a function taking one parameter and returning a boolean.
+    - `Or<T1, T2>(this bool boolean, Func<T1, T2, bool> other, T1 value1, T2 value2)`: Performs a logical OR operation on the first boolean value and functions taking two parameters and returning a boolean.
+    - `Or<T1, T2, T3>(this bool boolean, Func<T1, T2, T3, bool> other, T1 value1, T2 value2, T3 value3)`: Performs a logical OR operation on the first boolean value and functions taking three parameters and returning a boolean.
+    - `Or<T1, T2, T3, T4>(this bool boolean, Func<T1, T2, T3, T4, bool> other, T1 value1, T2 value2, T3 value3, T4 value4)`: Performs a logical OR operation on the first boolean value and functions taking four parameters and returning a boolean.
+    - `Or<T1, T2, T3, T4, T5>(this bool boolean, Func<T1, T2, T3, T4, T5, bool> other, T1 value1, T2 value2, T3 value3, T4 value4, T5 value5)`: Performs a logical OR operation on the first boolean value and functions taking five parameters and returning a boolean.
+
+- `OrNot` extension method:
+  - Overloads:
+    - `OrNot(this bool boolean, Func<bool> other)`: Performs a logical OR NOT operation on the first boolean value and a function returning a boolean.
+    - `OrNot<T>(this bool boolean, Func<T, bool> other, T value)`: Performs a logical OR NOT operation on the first boolean value and a function taking one parameter and returning a boolean.
+    - `OrNot<T1, T2>(this bool boolean, Func<T1, T2, bool> other, T1 value1, T2 value2)`: Performs a logical OR NOT operation on the first boolean value and functions taking two parameters and returning a boolean.
+    - `OrNot<T1, T2, T3>(this bool boolean, Func<T1, T2, T3, bool> other, T1 value1, T2 value2, T3 value3)`: Performs a logical OR NOT operation on the first boolean value and functions taking three parameters and returning a boolean.
+    - `OrNot<T1, T2, T3, T4>(this bool boolean, Func<T1, T2, T3, T4, bool> other, T1 value1, T2 value2, T3 value3, T4 value4)`: Performs a logical OR NOT operation on the first boolean value and functions taking four parameters and returning a boolean.
+    - `OrNot<T1, T2, T3, T4, T5>(this bool boolean, Func<T1, T2, T3, T4, T5, bool> other, T1 value1, T2 value2, T3 value3, T4 value4, T5 value5)`: Performs a logical OR NOT operation on the first boolean value and functions taking five parameters and returning a boolean.
+
+## [1.0.0] - 21-01-2024
 
 ### Added
 
