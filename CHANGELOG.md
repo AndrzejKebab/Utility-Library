@@ -1,6 +1,6 @@
 ﻿# Changelog
 
-## [1.2.0] - 23-01-2024
+## [1.3.0] - 23-01-2024
 
 ### Added
 
@@ -14,8 +14,6 @@
 - `Matches` method to return all matches of the pattern in the string with the specified options.
 - `MatchValues` method to return all match values of the pattern in the string.
 - `MatchValues` method to return all match values of the pattern in the string with the specified options.
-
-### Added
 
 #### GenericExtensions
 
@@ -35,6 +33,32 @@
 ##### Flag
 
 - `HasFlags` method to check if the value has all the specified flags.
+
+#### ObjectExtensions
+
+##### Null
+
+- `IsNull` method to check if the object is null.
+- `IsNotNull` method to check if the object is not null.
+
+##### Type
+
+- `CastType<T>` method to cast the object to the specified type.
+- `CastType` method to cast the object to the specified type.
+- `ConvertTo<T>` method to convert the object to the specified type.
+- `CanConvertTo<T>` method to check if the object can be converted to the specified type.
+
+##### As
+
+- `AsString` method to convert the object to a string.
+- `AsString` method to convert the object to a string using the specified format provider.
+- `AsInvariantString` method to convert the object to a string using the invariant culture.
+- `AsInt` method to convert the object to an integer.
+- `AsLong` method to convert the object to a long.
+- `AsShort` method to convert the object to a short.
+- `AsFloat` method to convert the object to a float.
+- `AsDouble` method to convert the object to a double.
+- `AsDecimal` method to convert the object to a decimal.
 
 ## [1.2.0] - 23-01-2024
 
