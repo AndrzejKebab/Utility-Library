@@ -15,6 +15,27 @@
 - `MatchValues` method to return all match values of the pattern in the string.
 - `MatchValues` method to return all match values of the pattern in the string with the specified options.
 
+### Added
+
+#### GenericExtensions
+
+##### Null / Empty
+
+- `IsNull` method to check if the value is null.
+- `IsNotNull` method to check if the value is not null.
+- `IsEmpty` method to check if the value is the default value for its type.
+- `IsNotEmpty` method to check if the value is not the default value for its type.
+- `ToNullable` method to convert the value to a nullable type.
+
+##### Equal
+
+- `EqualsAny` method to check if the value is equal to any of the provided values.
+- `EqualsNone` method to check if the value is not equal to any of the provided values.
+
+##### Flag
+
+- `HasFlags` method to check if the value has all the specified flags.
+
 ## [1.2.0] - 23-01-2024
 
 ### Added
