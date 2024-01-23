@@ -1,5 +1,116 @@
 ﻿# Changelog
 
+## [2.0.0] - 23-01-2024
+
+### Unity.Runtime
+
+### Added
+
+#### GameObject Extensions
+
+##### Prefab
+- `IsPrefab(this GameObject gameObject)`: Checks if the GameObject is a prefab.
+
+##### HasComponent
+- `HasComponent<T>(this GameObject gameObject)`: Checks if the GameObject has a specified component type.
+- `HasRigidbody(this GameObject gameObject)`: Checks if the GameObject has a Rigidbody component.
+- `HasAnimation(this GameObject gameObject)`: Checks if the GameObject has an Animation component.
+- `HasAnimator(this GameObject gameObject)`: Checks if the GameObject has an Animator component.
+
+##### Component
+- `TryGetComponent<T>(this GameObject gameObject, out T outComponent)`: Attempts to get a component of type T from the GameObject.
+- `TryGetComponentInParent<T>(this GameObject gameObject, out T outComponent)`: Attempts to get a component of type T from the GameObject or its ancestors.
+- `TryGetComponentInChildren<T>(this GameObject gameObject, out T outComponent)`: Attempts to get a component of type T from the GameObject or its descendants.
+- `GetOrAddComponent<T>(this GameObject gameObject)`: Gets or adds a component of type T to the GameObject.
+- `GetOrAddComponent(this GameObject gameObject, Type type)`: Gets or adds a component of the specified type to the GameObject.
+- `DestroyComponent<T>(this GameObject gameObject)`: Destroys a component of type T on the GameObject.
+- `DestroyComponent(this GameObject gameObject, Type type)`: Destroys a component of the specified type on the GameObject.
+- `SearchComponent<T>(this GameObject gameObject, string searchName)`: Searches for a component of type T with the specified name in the GameObject's descendants.
+- `FindComponentInParents<T>(this GameObject gameObject)`: Finds a component of type T in the GameObject's ancestors.
+- `FindComponentInParents(this GameObject gameObject, Type type)`: Finds a component of the specified type in the GameObject's ancestors.
+
+##### Path
+- `CreateChild(this GameObject gameObject, string pathName, char splitChar = '/')`: Creates child GameObjects based on the provided path name.
+- `Path(this GameObject gameObject)`: Gets the path of the GameObject in the scene hierarchy.
+- `PathFull(this GameObject gameObject)`: Gets the full path of the GameObject in the scene hierarchy, including the GameObject's name.
+- `Root(this GameObject go)`: Gets the root GameObject in the hierarchy of the provided GameObject.
+- `Depth(this GameObject go)`: Gets the depth of the GameObject in the hierarchy.
+
+##### Layer
+- `ContainLayer(this GameObject gameObject, int otherLayerIndex)`: Checks if the GameObject's layer is included in a specific layer index.
+- `ContainLayer(this GameObject gameObject, LayerMask otherLayerMask)`: Checks if the GameObject's layer is included in a specific LayerMask.
+- `ContainLayers(this GameObject gameObject, params LayerMask[] otherLayerMasks)`: Checks if the GameObject's layer is included in all specified LayerMasks.
+- `ContainOneOfLayers(this GameObject gameObject, params LayerMask[] otherLayerMasks)`: Checks if the GameObject's layer is included in at least one of the specified LayerMasks.
+- `SetLayer(this GameObject gameObject, LayerMask layerMask)`: Sets the layer of the GameObject using the provided LayerMask.
+- `SetLayerRecursion(this GameObject gameObject, LayerMask layerMask)`: Sets the layer of the GameObject and its children using the provided LayerMask.
+- `SetLayerRecursion(this GameObject gameObject, int layerIndex)`: Sets the layer of the GameObject and its children using the provided layer index.
+
+##### Tag
+- `SetTag(this GameObject gameObject, string tag)`: Sets the tag of the GameObject.
+- `SetTagRecursion(this GameObject gameObject, string tag)`: Sets the tag of the GameObject and its children.
+
+##### Particle
+- `GetParticleDuration(this GameObject gameObject, bool includeChildren = true, bool includeInactive = false, bool allowLoop = false)`: Gets the duration of the ParticleSystem on the GameObject.
+
+##### Trail Renderer
+- `GetTrailRendererTime(this GameObject gameObject)`: Gets the maximum time of TrailRenderer(s) on the GameObject.
+
+##### Bounds
+- `GetBounds(this GameObject gameObject, bool includeChildren = true)`: Gets the bounding box of the GameObject.
+
+#### MeshFilter Extensions
+
+- `GetBounds(this MeshFilter meshFilter, bool includeChildren = true)`: Gets the bounds of the mesh filter.
+
+#### ParticleSystemExtensions
+
+- `GetDuration(this ParticleSystem particle, bool allowLoop = false)`: Retrieves the duration. Returns -1 if `allowLoop` is false and the system is looping.
+- `GetMaxValue(this ParticleSystem.MinMaxCurve minMaxCurve)`: Obtains the maximum value.
+- `GetMinValue(this ParticleSystem.MinMaxCurve minMaxCurve)`: Gets the minimum value.
+
+#### Renderer Extensions
+
+##### Visibility
+- `IsVisible(this Renderer renderer, Camera camera)`: Checks if the renderer is visible from the specified camera.
+
+##### Bounds
+- `GetBounds(this Renderer renderer, bool includeChildren = true)`: Gets the bounds of the renderer. If `includeChildren` is true, the bounds encapsulate the bounds of child renderers.
+
+##### Material
+- `GetMaterial(this Renderer renderer, int materialIndex)`: Gets the material at the specified index. Returns null if the index is out of range.
+
+#### LayerMask Extensions
+
+##### Containment
+- `Contains(this LayerMask layerMask, LayerMask otherLayerMask)`: Checks if the layer mask contains the other layer mask.
+- `Contains(this LayerMask layerMask, int layerIndex)`: Checks if the layer mask contains the specified layer index.
+
+##### Information Retrieval
+- `GetLayerIndex(this LayerMask layerMask)`: Gets the layer index of the layer mask. Returns -1 if an error occurred.
+- `Inverse(this LayerMask layerMask)`: Inverts the layer mask.
+
+##### Modification
+- `AddToMask(this LayerMask layerMask, params string[] name)`: Adds the specified layers to the layer mask.
+- `RemoveFromMask(this LayerMask layerMask, params string[] name)`: Removes the specified layers from the layer mask.
+
+##### Conversion
+- `MaskToNames(this LayerMask layerMask)`: Converts the layer mask to an array of layer names.
+- `MaskToString(this LayerMask layerMask)`: Converts the layer mask to a string.
+- `MaskToString(this LayerMask layerMask, string delimiter)`: Converts the layer mask to a string with the specified delimiter.
+- `internal static LayerMask NameToMask(params string[] layerNames)`: Converts the specified layer names to a layer mask.
+
+#### AnimationCurve Extensions
+
+##### Looping
+- `IsLooping(this AnimationCurve animationCurve)`: Checks if the animation curve is looping.
+
+##### Value Retrieval
+- `GetMaxValue(this AnimationCurve animationCurve)`: Gets the maximum value of the animation curve.
+- `GetMinValue(this AnimationCurve animationCurve)`: Gets the minimum value of the animation curve.
+
+##### Modification
+- `Reverse(this AnimationCurve animationCurve)`: Reverses the animation curve.
+
 ## [1.3.0] - 23-01-2024
 
 ### Added
