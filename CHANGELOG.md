@@ -60,6 +60,12 @@
 - `AsDouble` method to convert the object to a double.
 - `AsDecimal` method to convert the object to a decimal.
 
+#### TaskAwaiterExtensions
+
+- `GetAwaiter(this TimeSpan timeSpan)` method to get a `TaskAwaiter` that completes after a specified time period.
+- `GetAwaiter(this int seconds)` method to get a `TaskAwaiter` that completes after a specified number of seconds.
+- `GetAwaiter(this float seconds)` method to get a `TaskAwaiter` that completes after a specified number of seconds.
+
 ## [1.2.0] - 23-01-2024
 
 ### Added
