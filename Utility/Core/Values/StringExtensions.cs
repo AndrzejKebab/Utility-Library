@@ -481,5 +481,107 @@ namespace UtilityLibrary.Core
 			return result;
 		}
 		#endregion
+
+		#region Regex
+		/// <summary>
+		/// Checks if the string matches the given pattern.
+		/// </summary>
+		/// <param name="value">The string to check.</param>
+		/// <param name="pattern">The pattern to match.</param>
+		/// <returns>True if the string matches the pattern, false otherwise.</returns>
+		public static bool IsMatch(this string value, string pattern)
+		{
+			var result = value != null && Regex.IsMatch(value, pattern);
+			return result;
+		}
+
+		/// <summary>
+		/// Checks if the string matches the given Regex.
+		/// </summary>
+		/// <param name="value">The string to check.</param>
+		/// <param name="regex">The Regex to match.</param>
+		/// <returns>True if the string matches the Regex, false otherwise.</returns>
+		public static bool IsMatch(this string value, Regex regex)
+		{
+			var result = value != null && regex.IsMatch(value);
+			return result;
+		}
+
+		/// <summary>
+		/// Returns the first match of the pattern in the string.
+		/// </summary>
+		/// <param name="value">The string to search.</param>
+		/// <param name="pattern">The pattern to match.</param>
+		/// <returns>The first match of the pattern in the string.</returns>
+		public static string Match(this string value, string pattern)
+		{
+			var result = value == null ? "" : Regex.Match(value, pattern).Value;
+			return result;
+		}
+
+		/// <summary>
+		/// Returns the first match of the Regex in the string.
+		/// </summary>
+		/// <param name="value">The string to search.</param>
+		/// <param name="regex">The Regex to match.</param>
+		/// <returns>The first match of the Regex in the string.</returns>
+		public static string Match(this string value, Regex regex)
+		{
+			var result = value == null ? "" : regex.Match(value).Value;
+			return result;
+		}
+
+		/// <summary>
+		/// Returns all matches of the pattern in the string.
+		/// </summary>
+		/// <param name="value">The string to search.</param>
+		/// <param name="regexPattern">The pattern to match.</param>
+		/// <returns>All matches of the pattern in the string.</returns>
+		public static MatchCollection Matches(this string value, string regexPattern)
+		{
+			var result = Matches(value, regexPattern, RegexOptions.None);
+			return result;
+		}
+
+		/// <summary>
+		/// Returns all matches of the pattern in the string with the specified options.
+		/// </summary>
+		/// <param name="value">The string to search.</param>
+		/// <param name="regexPattern">The pattern to match.</param>
+		/// <param name="options">The options to use when matching.</param>
+		/// <returns>All matches of the pattern in the string with the specified options.</returns>
+		public static MatchCollection Matches(this string value, string regexPattern, RegexOptions options)
+		{
+			var result = Regex.Matches(value, regexPattern, options);
+			return result;
+		}
+
+		/// <summary>
+		/// Returns all match values of the pattern in the string.
+		/// </summary>
+		/// <param name="value">The string to search.</param>
+		/// <param name="regexPattern">The pattern to match.</param>
+		/// <returns>All match values of the pattern in the string.</returns>
+		public static IEnumerable<string> MatchValues(this string value, string regexPattern)
+		{
+			var result = MatchValues(value, regexPattern, RegexOptions.None);
+			return result;
+		}
+
+		/// <summary>
+		/// Returns all match values of the pattern in the string with the specified options.
+		/// </summary>
+		/// <param name="value">The string to search.</param>
+		/// <param name="regexPattern">The pattern to match.</param>
+		/// <param name="options">The options to use when matching.</param>
+		/// <returns>All match values of the pattern in the string with the specified options.</returns>
+		public static IEnumerable<string> MatchValues(this string value, string regexPattern, RegexOptions options)
+		{
+			foreach (Match match in Matches(value, regexPattern, options))
+			{
+				if (match.Success) yield return match.Value;
+			}
+		}
+		#endregion
 	}
 }

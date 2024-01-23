@@ -4,6 +4,21 @@
 
 ### Added
 
+#### StringExtensions
+
+- `IsMatch` method to check if a string matches the given pattern.
+- `IsMatch` method to check if a string matches the given Regex.
+- `Match` method to return the first match of the pattern in the string.
+- `Match` method to return the first match of the Regex in the string.
+- `Matches` method to return all matches of the pattern in the string.
+- `Matches` method to return all matches of the pattern in the string with the specified options.
+- `MatchValues` method to return all match values of the pattern in the string.
+- `MatchValues` method to return all match values of the pattern in the string with the specified options.
+
+## [1.2.0] - 23-01-2024
+
+### Added
+
 #### ArrayExtensions
 
 - `Sort` method to sort the elements in the entire array using the specified comparison.
