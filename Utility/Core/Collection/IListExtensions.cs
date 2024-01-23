@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using UtilityLibrary.Core.LinqReplacement;
 
 namespace UtilityLibrary.Core
 {
     public static partial class IListExtensions
     {
+		internal static Random Rand = new Random();
+
         #region Null / Empty
         public static bool IsNullOrEmpty<T>(this IList<T> list) => list == null || list.Count == 0;
         
@@ -342,6 +344,177 @@ namespace UtilityLibrary.Core
 				list.Add(temp);
 			}
 			return list;
+		}
+		#endregion
+
+		#region Random
+		/// <summary>
+		/// Returns a random item from the list.
+		/// </summary>
+		/// <typeparam name="T">The type of items in the list.</typeparam>
+		/// <param name="list">The list to get a random item from.</param>
+		/// <returns>A random item from the list, or the default value for the type if the list is empty.</returns>
+		public static T Random<T>(this IList<T> list)
+		{
+			var result = list.Count > 0 ? list[Rand.Next(0, list.Count)] : default(T);
+			return result;
+		}
+
+		/// <summary>
+		/// Returns a random item from the list that matches a predicate.
+		/// </summary>
+		/// <typeparam name="T">The type of items in the list.</typeparam>
+		/// <param name="list">The list to get a random item from.</param>
+		/// <param name="predicate">A function to test each item for a condition.</param>
+		/// <returns>A random item from the list that matches the predicate, or the default value for the type if no items match the predicate.</returns>
+		public static T Random<T>(this IList<T> list, Predicate<T> predicate)
+		{
+			var indexes = new List<int>();
+			var count = list.Count;
+			for (var i = 0; i < count; i++)
+			{
+				if (predicate(list[i]))
+				{
+					indexes.Add(i);
+				}
+			}
+
+			if (indexes.Count == 0) return default(T);
+			var randIndex = indexes.Random();
+			var result = list[randIndex];
+			return result;
+		}
+
+		/// <summary>
+		/// Returns a specified number of random items from the list.
+		/// </summary>
+		/// <typeparam name="T">The type of items in the list.</typeparam>
+		/// <param name="list">The list to get random items from.</param>
+		/// <param name="count">The number of random items to get.</param>
+		/// <param name="allowRepeat">Whether to allow the same item to be chosen more than once.</param>
+		/// <returns>A list of random items from the list.</returns>
+		public static List<T> Random<T>(this IList<T> list, int count, bool allowRepeat = false)
+		{
+			var result = new List<T>();
+			var listCount = list.Count;
+			if (count > listCount)
+			{
+				throw new IndexOutOfRangeException();
+			}
+
+			for (var i = 0; i < count; i++)
+			{
+				var item = list[Rand.Next(0, listCount)];
+				if (!allowRepeat && result.Contains(item))
+				{
+					i--;
+					continue;
+				}
+
+				result.Add(item);
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		/// Returns a random item from the list, with the probability of choosing each item proportional to its weight.
+		/// </summary>
+		/// <typeparam name="T">The type of items in the list.</typeparam>
+		/// <param name="list">The list to get a random item from.</param>
+		/// <param name="weightGetter">A function to get the weight of each item.</param>
+		/// <returns>A random item from the list, chosen with probability proportional to its weight.</returns>
+		public static T Random<T>(this IList<T> list, Func<T, int> weightGetter)
+		{
+			var weightCount = 0;
+			for (var i = 0; i < list.Count; i++)
+			{
+				weightCount += weightGetter(list[i]);
+			}
+
+			var rand = Rand.Next(0, weightCount + 1);
+			weightCount = 0;
+			var index = -1;
+			do
+			{
+				weightCount += weightGetter(list[index + 1]);
+				index++;
+			} while (weightCount < rand);
+
+			var result = list[index];
+			return result;
+		}
+
+		/// <summary>
+		/// Returns a specified number of random items from the list, with the probability of choosing each item proportional to its weight.
+		/// </summary>
+		/// <typeparam name="T">The type of items in the list.</typeparam>
+		/// <param name="list">The list to get random items from.</param>
+		/// <param name="weightGetter">A function to get the weight of each item.</param>
+		/// <param name="count">The number of random items to get.</param>
+		/// <returns>A list of random items from the list, chosen with probability proportional to their weights.</returns>
+		public static List<T> Random<T>(this IList<T> list, Func<T, int> weightGetter, int count)
+		{
+			var listCount = list.Count;
+			var result = new List<T>();
+			do
+			{
+				var item = list.Random(weightGetter);
+				if (result.Contains(item)) continue;
+				result.Add(item);
+			} while (result.Count < count && result.Count < listCount);
+
+			return result;
+		}
+
+		/// <summary>
+		/// Returns a random item from the list, with the probability of choosing each item proportional to its weight.
+		/// </summary>
+		/// <typeparam name="T">The type of items in the list.</typeparam>
+		/// <param name="list">The list to get a random item from.</param>
+		/// <param name="weightGetter">A function to get the weight of each item.</param>
+		/// <returns>A random item from the list, chosen with probability proportional to its weight.</returns>
+		public static T Random<T>(this IList<T> list, Func<T, float> weightGetter)
+		{
+			var weightCount = 0f;
+			for (var i = 0; i < list.Count; i++)
+			{
+				weightCount += weightGetter(list[i]);
+			}
+
+			var rand = (float)Rand.NextDouble() * weightCount;
+			weightCount = 0;
+			var index = -1;
+			do
+			{
+				weightCount += weightGetter(list[index + 1]);
+				index++;
+			} while (weightCount < rand);
+
+			var result = list[index];
+			return result;
+		}
+
+		/// <summary>
+		/// Returns a specified number of random items from the list, with the probability of choosing each item proportional to its weight.
+		/// </summary>
+		/// <typeparam name="T">The type of items in the list.</typeparam>
+		/// <param name="list">The list to get random items from.</param>
+		/// <param name="weightGetter">A function to get the weight of each item.</param>
+		/// <param name="count">The number of random items to get.</param>
+		/// <returns>A list of random items from the list, chosen with probability proportional to their weights.</returns>
+		public static List<T> Random<T>(this IList<T> list, Func<T, float> weightGetter, int count)
+		{
+			var listCount = list.Count;
+			var result = new List<T>();
+			do
+			{
+				var item = list.Random(weightGetter);
+				if (result.Contains(item)) continue;
+				result.Add(item);
+			} while (result.Count < count && result.Count < listCount);
+
+			return result;
 		}
 		#endregion
 	}

@@ -66,6 +66,16 @@
 - `GetAwaiter(this int seconds)` method to get a `TaskAwaiter` that completes after a specified number of seconds.
 - `GetAwaiter(this float seconds)` method to get a `TaskAwaiter` that completes after a specified number of seconds.
 
+#### IList Extensions
+
+- `Random<T>(this IList<T> list)` method to get a random item from the list.
+- `Random<T>(this IList<T> list, Predicate<T> predicate)` method to get a random item from the list that matches a predicate.
+- `Random<T>(this IList<T> list, int count, bool allowRepeat = false)` method to get a specified number of random items from the list.
+- `Random<T>(this IList<T> list, Func<T, int> weightGetter)` method to get a random item from the list, with the probability of choosing each item proportional to its weight.
+- `Random<T>(this IList<T> list, Func<T, int> weightGetter, int count)` method to get a specified number of random items from the list, with the probability of choosing each item proportional to its weight.
+- `Random<T>(this IList<T> list, Func<T, float> weightGetter)` method to get a random item from the list, with the probability of choosing each item proportional to its weight.
+- `Random<T>(this IList<T> list, Func<T, float> weightGetter, int count)` method to get a specified number of random items from the list, with the probability of choosing each item proportional to its weight.
+
 ## [1.2.0] - 23-01-2024
 
 ### Added
