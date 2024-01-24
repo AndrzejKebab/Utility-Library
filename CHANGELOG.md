@@ -1,5 +1,35 @@
 ﻿# Changelog
 
+## [2.1.0] - 24-01-2024
+
+### Added
+
+#### IList Extensions
+
+##### Min / Max
+- `Min<T>(this IList<T> list) where T : IComparable`: Returns the minimum item in the list based on the IComparable interface.
+- `Min<T>(this IList<T> list, Func<T, IComparable> keyGetter) where T : IComparable`: Returns the minimum item in the list based on a key selector function.
+- `Max<T>(this IList<T> list) where T : IComparable`: Returns the maximum item in the list based on the IComparable interface.
+- `Max<T>(this IList<T> list, Func<T, IComparable> keyGetter) where T : IComparable`: Returns the maximum item in the list based on a key selector function.
+
+##### To List
+- `ToList<T, TResult>(this IList<T> list, Func<T, TResult> selector)`: Converts the elements of an IList to another type and returns a List containing the converted elements.
+
+##### To Dictionary
+- `ToDictionary<TKey, T>(this IList<T> list, Func<T, TKey> getKeyFunc)`: Converts the elements of an IList to a Dictionary using a provided key selector function.
+- `ToDictionary<TKey, TValue, T>(this IList<T> list, Func<T, TKey> getKeyFunc, Func<T, TValue> getValueFunc)`: Converts the elements of an IList to a Dictionary using provided key and value selector functions.
+
+#### IEnumerable Extensions
+
+##### Min / Max
+- `Min<T, TValue>(this IEnumerable<T> source, Func<T, TValue> keyGetter, out TValue minValue) where TValue : IComparable`: Returns the minimum item in the source sequence based on a key selector function.
+- `Min<T, TValue>(this IEnumerable<T> source, Func<T, TValue> selector) where TValue : IComparable`: Returns the minimum item in the source sequence based on a selector function.
+- `Max<T, TValue>(this IEnumerable<T> source, Func<T, TValue> keyGetter, out TValue maxValue) where TValue : IComparable<TValue>`: Returns the maximum item in the source sequence based on a key selector function.
+- `Max<T, TValue>(this IEnumerable<T> source, Func<T, TValue> keyGetter) where TValue : IComparable<TValue>`: Returns the maximum item in the source sequence based on a selector function.
+
+##### Select
+- `Select<T, TResult>(this IEnumerable<T> source, Func<T, TResult> selector, bool allowNull = true)`: Projects each element of a sequence into a new form.
+
 ## [2.0.0] - 23-01-2024
 
 ### Unity.Runtime
