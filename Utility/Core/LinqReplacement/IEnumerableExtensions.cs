@@ -124,7 +124,115 @@ namespace UtilityLibrary.Core.LinqReplacement
 			return result;
 		}
 		#endregion
-
+		
+		#region Min / Max
+		/// <summary>
+		/// Returns the minimum item in the source sequence based on a key selector function.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
+		/// <typeparam name="TValue">The type of the value to compare.</typeparam>
+		/// <param name="source">The <see cref="IEnumerable{T}"/> to find the minimum item in.</param>
+		/// <param name="keyGetter">A function to extract the comparison key from each element.</param>
+		/// <param name="minValue">The minimum value found in the sequence.</param>
+		/// <returns>The item with the minimum value in the source sequence.</returns>
+		public static T Min<T, TValue>(this IEnumerable<T> source, Func<T, TValue> keyGetter, out TValue minValue)
+		    where TValue : IComparable
+		{
+		    T minItem = default;
+		    minValue = default(TValue);
+		    foreach (var item in source)
+		    {
+		        if (item == null) continue;
+		        var itemValue = keyGetter(item);
+		        if ((minItem != null) && (itemValue.CompareTo(minValue) >= 0)) continue;
+		        minValue = itemValue;
+		        minItem = item;
+		    }
+		
+		    return minItem;
+		}
+		
+		/// <summary>
+		/// Returns the minimum item in the source sequence based on a selector function.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
+		/// <typeparam name="TValue">The type of the value to compare.</typeparam>
+		/// <param name="source">The <see cref="IEnumerable{T}"/> to find the minimum item in.</param>
+		/// <param name="selector">A function to extract the comparison key from each element.</param>
+		/// <returns>The item with the minimum value in the source sequence.</returns>
+		public static T Min<T, TValue>(this IEnumerable<T> source, Func<T, TValue> selector)
+		    where TValue : IComparable
+		{
+		    var result = source.Min(selector, out _);
+		    return result;
+		}
+		
+		/// <summary>
+		/// Returns the maximum item in the source sequence based on a key selector function.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
+		/// <typeparam name="TValue">The type of the value to compare.</typeparam>
+		/// <param name="source">The <see cref="IEnumerable{T}"/> to find the maximum item in.</param>
+		/// <param name="selector">A function to extract the comparison key from each element.</param>
+		/// <param name="maxValue">The maximum value found in the sequence.</param>
+		/// <returns>The item with the maximum value in the source sequence.</returns>
+		public static T Max<T, TValue>(this IEnumerable<T> source, Func<T, TValue> selector, out TValue maxValue)
+		    where TValue : IComparable<TValue>
+		{
+		    T maxItem = default;
+		    maxValue = default(TValue);
+		    foreach (var item in source)
+		    {
+		        if (item == null) continue;
+		        var itemValue = selector(item);
+		        if ((maxItem != null) && (itemValue.CompareTo(maxValue) <= 0)) continue;
+		        maxValue = itemValue;
+		        maxItem = item;
+		    }
+		
+		    return maxItem;
+		}
+		
+		/// <summary>
+		/// Returns the maximum item in the source sequence based on a selector function.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
+		/// <typeparam name="TValue">The type of the value to compare.</typeparam>
+		/// <param name="source">The <see cref="IEnumerable{T}"/> to find the maximum item in.</param>
+		/// <param name="keyGetter">A function to extract the comparison key from each element.</param>
+		/// <returns>The item with the maximum value in the source sequence.</returns>
+		public static T Max<T, TValue>(this IEnumerable<T> source, Func<T, TValue> keyGetter)
+		    where TValue : IComparable<TValue>
+		{
+		    var result = source.Max(keyGetter, out _);
+		    return result;
+		}
+		
+		#endregion
+		
+		#region Select
+		/// <summary>
+		/// Projects each element of a sequence into a new form.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements of source.</typeparam>
+		/// <typeparam name="TResult">The type of the value returned by the selector function.</typeparam>
+		/// <param name="source">The <see cref="IEnumerable{T}"/> to project.</param>
+		/// <param name="selector">A transform function to apply to each element.</param>
+		/// <param name="allowNull">A boolean value to determine whether null values are allowed.</param>
+		/// <returns>An <see cref="IEnumerable{TResult}"/> whose elements are the result of invoking the transform function on each element of source.</returns>
+		public static IEnumerable<TResult> Select<T, TResult>(this IEnumerable<T> source, Func<T, TResult> selector, bool allowNull = true)
+		{
+		    foreach (var item in source)
+		    {
+		        var select = selector(item);
+		        if (allowNull || !Equals(select, default(T)))
+		        {
+		            yield return select;
+		        }
+		    }
+		}
+		#endregion
+		
 		#region To Array
 		/// <summary>
 		/// Creates an array from an IEnumerable<T>.

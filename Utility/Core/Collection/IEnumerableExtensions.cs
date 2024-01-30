@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnLinq = UtilityLibrary.Core.LinqReplacement.IEnumerableExtensions;
 using System.Linq;
 
 namespace UtilityLibrary.Core
@@ -8,11 +7,11 @@ namespace UtilityLibrary.Core
     public static partial class IEnumerableExtensions
     {
         #region Null / Empty
-        public static bool IsNullOrEmpty<T>(this IEnumerable<T> source) => source == null || !UnLinq.Any(source);
+        public static bool IsNullOrEmpty<T>(this IEnumerable<T> source) => source == null || !source.Any();
 
-        public static bool IsEmpty<T>(this IEnumerable<T> source) => !UnLinq.Any(source);
+        public static bool IsEmpty<T>(this IEnumerable<T> source) => !source.Any();
 
-        public static bool IsNotEmpty<T>(this IEnumerable<T> source) => UnLinq.Any(source);
+        public static bool IsNotEmpty<T>(this IEnumerable<T> source) => source.Any();
 		#endregion
 
 		#region Find
