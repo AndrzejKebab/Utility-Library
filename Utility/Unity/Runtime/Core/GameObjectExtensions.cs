@@ -5,7 +5,7 @@ using Object = UnityEngine.Object;
 
 namespace UtilityLibrary.Unity.Runtime
 {
-	public static partial class GameObjectExtensions
+	public static class GameObjectExtensions
     {
 		#region Prefab
 		/// <summary>

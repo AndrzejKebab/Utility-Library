@@ -5,7 +5,7 @@ namespace UtilityLibrary.Unity.Runtime
 	/// <summary>
 	/// Provides extension methods for the AnimationCurve class.
 	/// </summary>
-	public static partial class AnimationCurveExtensions
+	public static class AnimationCurveExtensions
 	{
 		/// <summary>
 		/// Checks if the animation curve is looping.

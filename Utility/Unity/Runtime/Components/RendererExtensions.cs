@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace UtilityLibrary.Unity.Runtime
 {
-	public static partial class RendererExtensions
+	public static class RendererExtensions
 	{
 		/// <summary>
 		/// Checks if the renderer is visible from the specified camera.

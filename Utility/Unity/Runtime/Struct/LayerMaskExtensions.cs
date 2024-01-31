@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UtilityLibrary.Unity.Runtime
 {
-	public static partial class LayerMaskExtensions
+	public static class LayerMaskExtensions
 	{
 		/// <summary>
 		/// Checks if the layer mask contains the other layer mask.

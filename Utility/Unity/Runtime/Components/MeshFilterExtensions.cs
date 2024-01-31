@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace UtilityLibrary.Unity.Runtime
 {
-	public static partial class MeshFilterExtensions
+	public static class MeshFilterExtensions
 	{
 		/// <summary>
 		/// Gets the bounds of the mesh filter.
