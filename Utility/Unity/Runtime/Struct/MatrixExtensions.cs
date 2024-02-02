@@ -18,8 +18,10 @@ namespace UtilityLibrary.Unity.Runtime
                                out Vector4 column0, out Vector4 column1,
                                out Vector4 column2, out Vector4 column3)
         {
-            column0 = matrix.GetColumn(0); column1 = matrix.GetColumn(1);
-            column2 = matrix.GetColumn(2); column3 = matrix.GetColumn(3);
+            column0 = matrix.GetColumn(0); 
+            column1 = matrix.GetColumn(1);
+            column2 = matrix.GetColumn(2);
+            column3 = matrix.GetColumn(3);
         }
 
         /// <summary>

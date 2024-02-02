@@ -5,6 +5,7 @@ namespace UtilityLibrary.Unity.Runtime
 {
     public static class ComponentExtension
     {
+        #region Components
         public static void CacheAllComponents<T>(this T component) where T : Component
         {
             var bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static;
@@ -63,5 +64,6 @@ namespace UtilityLibrary.Unity.Runtime
             var result = component.gameObject.TryGetComponentInChildren(out outComponent);
             return result;
         }
+        #endregion
     }
 }
