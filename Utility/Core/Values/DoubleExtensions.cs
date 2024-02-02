@@ -5,6 +5,12 @@ namespace UtilityLibrary.Core
 {
 	public static partial class DoubleExtensions
 	{
+		public static double PercentageOf(this double part, double whole)
+		{
+			if (whole == 0) return 0;
+			return part / whole;
+		}
+		
 		#region Abs
 		public static double Abs(this double value) => Math.Abs(value);
 

@@ -5,6 +5,12 @@ namespace UtilityLibrary.Core
 {
 	public static partial class LongExtensions
 	{
+		public static float PercentageOf(this long part, long whole)
+		{
+			if (whole == 0) return 0;
+			return (float)part / whole;
+		}
+		
 		#region Abs
 		public static long Abs(this long value) => Math.Abs(value);
 

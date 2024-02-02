@@ -6,6 +6,12 @@ namespace UtilityLibrary.Core
 {
 	public static partial class ByteExtensions
 	{
+		public static float PercentageOf(this byte part, byte whole)
+		{
+			if (whole == 0) return 0;
+			return (float)part / whole;
+		}
+		
 		#region Odd / Even
 		public static bool IsEven(this byte value) => value % 2 == 0;
 		public static bool IsOdd(this byte value) => value % 2 == 1;

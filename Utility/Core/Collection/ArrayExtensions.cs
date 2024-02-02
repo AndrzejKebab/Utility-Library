@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace UtilityLibrary.Core
 {
-    public static partial class ArrayExtensions
+    public static class ArrayExtensions
     {
 		internal static Random Rand = new();
 
@@ -40,6 +40,62 @@ namespace UtilityLibrary.Core
 		/// <returns>True if the index is within the bounds of the specified dimension of the array; otherwise, false.</returns>
 		public static bool WithinIndex(this Array array, int index, int dimension)
 			=> array != null && index >= array.GetLowerBound(dimension) && index <= array.GetUpperBound(dimension);
+		
+		/// <summary>
+		/// Calculates the flattened index for a two-dimensional array.
+		/// </summary>
+		/// <param name="array">The two-dimensional array.</param>
+		/// <param name="x">The index along the first dimension.</param>
+		/// <param name="y">The index along the second dimension.</param>
+		/// <returns>The flattened index.</returns>
+		public static int FlattenIndex(this Array array, int x, int y) => y * array.GetLength(0) + x;
+		
+		/// <summary>
+		/// Calculates the flattened index for a three-dimensional array.
+		/// </summary>
+		/// <param name="array">The three-dimensional array.</param>
+		/// <param name="x">The index along the first dimension.</param>
+		/// <param name="y">The index along the second dimension.</param>
+		/// <param name="z">The index along the third dimension.</param>
+		/// <returns>The flattened index.</returns>
+		public static int FlattenIndex(this Array array, int x, int y, int z) 
+			=> (x + y * array.GetLength(0) + z * array.GetLength(0) * array.GetLength(2));
+		#endregion
+
+		#region Flatten / Unflatten
+		public static T[] FlattenFrom2D<T>(T[,] input)
+		{
+			int width = input.GetLength(0);
+			int height = input.GetLength(1);
+			var flattened = new T[width * height];
+
+			for (int y = 0; y < height; y++)
+			{
+				for (int x = 0; x < width; x++)
+				{
+					flattened[y * width + x] = input[x, y];
+				}
+			}
+
+			return flattened;
+		}
+
+
+		public static T[,] UnflattenTo2D<T>(T[] input, int width, int height)
+		{
+			T[,] unflattened = new T[width, height];
+
+			for (int y = 0; y < height; y++)
+			{
+				for (int x = 0; x < width; x++)
+				{
+					unflattened[x, y] = input[y * width + x];
+
+				}
+			}
+
+			return unflattened;
+		}
 		#endregion
 
 		#region Swap

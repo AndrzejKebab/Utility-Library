@@ -7,6 +7,8 @@ namespace UtilityLibrary.Core
     public static partial class IListExtensions
     {
 		internal static Random Rand = new Random();
+		
+		public static int LastIndex<T>(this List<T> l) => l.Count - 1;
 
         #region Null / Empty
         public static bool IsNullOrEmpty<T>(this IList<T> list) => list == null || list.Count == 0;
@@ -23,7 +25,7 @@ namespace UtilityLibrary.Core
         }
 		#endregion
 
-		#region Switch
+		#region Swap
 		/// <summary>
 		/// Swaps the elements at the specified indices in the list.
 		/// </summary>
@@ -40,6 +42,25 @@ namespace UtilityLibrary.Core
 		#endregion
 
 		#region Add / Insert
+		/// <summary>
+		/// Adds an element to the specified index of the list. If the index is out of bounds,
+		/// the element is added to the end of the list.
+		/// </summary>
+		/// <param name="list">The list to which the element is added.</param>
+		/// <param name="index">The index at which the element should be added.</param>
+		/// <param name="element">The element to add to the list.</param>
+		public static void AddAt<T>(this IList<T> list, int index, T element)
+		{
+			if (index < 0 || index >= list.Count)
+			{
+				list.Add(element);
+			}
+			else
+			{
+				list.Insert(index, element);
+			}
+		}
+		
 		/// <summary>
 		/// Adds an item to the list if it is not already present.
 		/// </summary>
@@ -138,6 +159,31 @@ namespace UtilityLibrary.Core
 			var result = list[index];
 			list.RemoveAt(index);
 			return result;
+		}
+		
+		/// <summary>
+		/// Retrieves the element at the specified index in a list, with wrapping for out-of-bounds indices.
+		/// </summary>
+		/// <typeparam name="T">The type of elements in the list.</typeparam>
+		/// <param name="index">The index at which to retrieve the element. Negative indices wrap around from the end of the list.</param>
+		/// <returns>The element at the specified index with wrapping for out-of-bounds indices.</returns>
+		public static T GetAtWrapped<T>(this List<T> list, int index)
+		{
+			while (index < 0) index += list.Count;
+			while (index >= list.Count) index -= list.Count;
+
+			return list[index];
+		}
+		
+		/// <summary>
+		/// Retrieves a random element from a list.
+		/// </summary>
+		/// <param name="list">The list from which to retrieve a random element.</param>
+		/// <returns>A random element from the list.</returns>
+		public static T GetRandomItem<T>(this IList<T> list)
+		{
+			int randomIndex = Rand.Next(0, list.Count);
+			return list[randomIndex];
 		}
 		#endregion
 
@@ -257,6 +303,15 @@ namespace UtilityLibrary.Core
 
 		#region Remove
 		/// <summary>
+		/// Removes the last element from the list if the list is not empty.
+		/// </summary>
+		public static void RemoveLast<T>(this IList<T> list)
+		{
+			if (list.IsNullOrEmpty()) return;
+			list.RemoveAt(list.Count - 1);
+		}
+		
+		/// <summary>
 		/// Removes repeated items from the start of the list.
 		/// </summary>
 		/// <typeparam name="T">The type of the elements of the list.</typeparam>
@@ -315,6 +370,24 @@ namespace UtilityLibrary.Core
 				list.RemoveAt(count - 1);
 			}
 			return list;
+		}
+		
+		/// <summary>
+		/// Removes a random element from a list and returns it.
+		/// </summary>
+		/// <typeparam name="T">The type of elements in the list.</typeparam>
+		/// <param name="list">The list from which to remove a random element.</param>
+		/// <returns>The removed random element.</returns>
+		/// <exception cref="System.IndexOutOfRangeException">Thrown if the list is empty.</exception>
+		public static T RemoveRandomItem<T>(this IList<T> list)
+		{
+			if (list.Count == 0) throw new IndexOutOfRangeException("Cannot remove a random item from an empty list");
+
+			int index = Rand.Next(0, list.Count);
+			T item = list[index];
+			list.RemoveAt(index);
+
+			return item;
 		}
 
 		/// <summary>
@@ -515,6 +588,38 @@ namespace UtilityLibrary.Core
 			} while (result.Count < count && result.Count < listCount);
 
 			return result;
+		}
+		#endregion
+
+		#region Clone
+		/// <summary>
+		/// Creates a new list that is a copy of the original list.
+		/// </summary>
+		/// <param name="list">The original list to be copied.</param>
+		/// <returns>A new list that is a copy of the original list.</returns>
+		public static List<T> Clone<T>(this IList<T> list)
+		{
+			List<T> newList = new List<T>();
+			foreach (T item in list) {
+				newList.Add(item);
+			}
+
+			return newList;
+		}
+		#endregion
+
+		#region Shuffle
+		/// <summary>
+		/// Shuffles the elements of a list using the Fisher-Yates algorithm.
+		/// </summary>
+		/// <param name="list">The list to be shuffled.</param>
+		public static void Shuffle<T>(this IList<T> list)
+		{
+			for (var i = list.Count - 1; i > 0; i--)
+			{
+				var j = Rand.Next(0, i + 1);
+				(list[j], list[i]) = (list[i], list[j]);
+			}
 		}
 		#endregion
 	}

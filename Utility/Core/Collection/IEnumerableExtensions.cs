@@ -133,5 +133,36 @@ namespace UtilityLibrary.Core
 		#region HashSet
 		public static HashSet<T> ToHashSet<T>(this IEnumerable<T> source) => new HashSet<T>(source);
         #endregion
+
+        #region Insert First
+        /// <summary>
+        /// Inserts an element at the beginning of an enumerable collection.
+        /// </summary>
+        /// <param name="source">The enumerable collection to which the element is added.</param>
+        /// <param name="element">The element to insert at the beginning.</param>
+        /// <returns>A new enumerable collection with the specified element inserted at the beginning.</returns>
+        public static IEnumerable<T> InsertFirst<T>(this IEnumerable<T> source, T element) 
+	        => new[] { element }.Concat(source);
+        #endregion
+
+        #region Next / Previous To
+        /// <summary>
+        /// Retrieves the element in the sequence that is immediately after a specified element.
+        /// </summary>
+        /// <param name="source">The sequence of elements.</param>
+        /// <param name="element">The specified element.</param>
+        /// <returns>The element that is immediately after the specified element, or default(T) if not found.</returns>
+        public static T NextTo<T>(this IEnumerable<T> source, T element) 
+	        => source.SkipWhile(r => !EqualityComparer<T>.Default.Equals(r, element)).Skip(1).FirstOrDefault();
+
+        /// <summary>
+        /// Retrieves the element in the sequence that is immediately before a specified element.
+        /// </summary>
+        /// <param name="source">The sequence of elements.</param>
+        /// <param name="element">The specified element.</param>
+        /// <returns>The element that is immediately before the specified element, or default(T) if not found.</returns>
+        public static T PreviousTo<T>(this IEnumerable<T> source, T element) 
+	        => source.Reverse().SkipWhile(r => !EqualityComparer<T>.Default.Equals(r, element)).Skip(1).FirstOrDefault();
+        #endregion
     }
 }

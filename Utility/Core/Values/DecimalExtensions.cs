@@ -5,6 +5,12 @@ namespace UtilityLibrary.Core
 {
     public static partial class DecimalExtensions
     {
+	    public static decimal PercentageOf(this decimal part, decimal whole)
+	    {
+		    if (whole == 0) return 0;
+		    return part / whole;
+	    }
+	    
 		#region Abs
 		public static decimal Abs(this decimal value) => Math.Abs(value);
 

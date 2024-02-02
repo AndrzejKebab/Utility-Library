@@ -5,6 +5,12 @@ namespace UtilityLibrary.Core
 {
 	public static partial class ShortExtensions
 	{
+		public static float PercentageOf(this short part, short whole)
+		{
+			if (whole == 0) return 0;
+			return (float)part / whole;
+		}
+		
 		#region Abs
 		public static short Abs(this short value) => Math.Abs(value);
 

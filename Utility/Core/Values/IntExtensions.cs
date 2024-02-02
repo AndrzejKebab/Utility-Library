@@ -1,10 +1,17 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace UtilityLibrary.Core
 {
 	public static partial class IntExtensions
 	{
+		public static float PercentageOf(this int part, int whole)
+		{
+			if (whole == 0) return 0;
+			return (float)part / whole;
+		}
+		
 		#region Clamp
         public static int ClampMin0(this int value) => ClampMin(value, 0);
         public static int ClampMin(this int value, int min) => value < min ? min : value;
@@ -52,6 +59,14 @@ namespace UtilityLibrary.Core
 		/// <returns>The integer value if it is within the range; otherwise, the default value.</returns>
 		public static double InRange(this int value, int minValue, int maxValue, int defaultValue)
 			=> value.IsInRange(minValue, maxValue) ? value : defaultValue;
+		
+		/// <summary>
+		/// Determines whether an integer is within the valid index range of a list.
+		/// </summary>
+		/// /// <param name="value">The integer value to check.</param>
+		/// <param name="list">The list for which to check the index range.</param>
+		/// <returns>True if the integer is within the valid index range of the list; otherwise, false.</returns>
+		public static bool IsInRangeOf(this int value, IList list) => value.IsInRange(0, list.Count - 1);
 		#endregion
 
         #region Odd / Even
