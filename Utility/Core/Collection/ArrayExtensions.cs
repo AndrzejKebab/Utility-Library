@@ -60,6 +60,49 @@ namespace UtilityLibrary.Core
 		/// <returns>The flattened index.</returns>
 		public static int FlattenIndex(this Array array, int x, int y, int z) 
 			=> (x + y * array.GetLength(0) + z * array.GetLength(0) * array.GetLength(2));
+		
+		/// <summary>
+		/// Retrieves the element at the specified 2D index in a flattened array.
+		/// </summary>
+		/// <param name="array">The one-dimensional array to retrieve the element from.</param>
+		/// <param name="width">The width of the original two-dimensional array.</param>
+		/// <param name="x">The x-coordinate in the original two-dimensional array.</param>
+		/// <param name="y">The y-coordinate in the original two-dimensional array.</param>
+		/// <returns>The element at the specified 2D index in the flattened array.</returns>
+		public static object GetAtFlatIndex(this Array array, int width, int x, int y)
+		{
+		 return array.GetValue(y * width + x);
+		}
+		
+		/// <summary>
+		/// Retrieves the element at the specified 3D index in a flattened array.
+		/// </summary>
+		/// <param name="array">The one-dimensional array to retrieve the element from.</param>
+		/// <param name="width">The width of the original three-dimensional array.</param>
+		/// <param name="height">The height of the original three-dimensional array.</param>
+		/// <param name="x">The x-coordinate in the original three-dimensional array.</param>
+		/// <param name="y">The y-coordinate in the original three-dimensional array.</param>
+		/// <param name="z">The z-coordinate in the original three-dimensional array.</param>
+		/// <returns>The element at the specified 3D index in the flattened array.</returns>
+		public static object GetAtFlatIndex(this Array array, int width, int height, int x, int y, int z)
+		{
+		 return array.GetValue(x + y * width + z * width * height);
+		}
+		
+		/// <summary>
+		/// Retrieves the element at the specified 3D index in a flattened array.
+		/// This method assumes that the original three-dimensional array was a cube, with equal width, height, and depth.
+		/// </summary>
+		/// <param name="array">The one-dimensional array to retrieve the element from.</param>
+		/// <param name="size">The size (width, height, and depth) of the original three-dimensional array.</param>
+		/// <param name="x">The x-coordinate in the original three-dimensional array.</param>
+		/// <param name="y">The y-coordinate in the original three-dimensional array.</param>
+		/// <param name="z">The z-coordinate in the original three-dimensional array.</param>
+		/// <returns>The element at the specified 3D index in the flattened array.</returns>
+		public static object GetAtFlatIndex(this Array array, int size, int x, int y, int z)
+		{
+			return array.GetValue(x + y * size + z * size * size);
+		}
 		#endregion
 
 		#region Flatten / Unflatten
