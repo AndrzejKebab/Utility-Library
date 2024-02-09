@@ -12,14 +12,14 @@ Welcome to the Utility Library, a versatile collection of extension methods, hel
    - Clone this repository into your project's folder.
 
    ```bash
-   git clone https://github.com/AndrzejKebab/Utility-Library.git
+   git clone https://github.com/AndrzejKebab/UtilityLibrary.git
    ```
    or download the ZIP file and manually include it in your project.
    
    - Alternatively, import it in Unity using the package manager with the following URL:
 
    ```
-   https://github.com/AndrzejKebab/Utility-Library.git
+   https://github.com/AndrzejKebab/UtilityLibrary.git
    ```
 
 3. **Access:**
