@@ -1,6 +1,6 @@
 {
     "name": "UtilityLibrary.Unity.Runtime",
-    "rootNamespace": "UtilityLibrary.Unity.Runtime",
+    "rootNamespace": "",
     "references": [
         "GUID:808629542ef9e444c9204d21d53ee477",
         "GUID:df380645f10b7bc4b97d4f5eb6303d95",

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace UtilityLibrary.Core
 {
-	public static partial class ShortExtensions
+	public static class ShortExtensions
 	{
 		public static float PercentageOf(this short part, short whole)
 		{

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace UtilityLibrary.Core
 {
-    public static partial class DecimalExtensions
+    public static class DecimalExtensions
     {
 	    public static decimal PercentageOf(this decimal part, decimal whole)
 	    {

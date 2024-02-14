@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace UtilityLibrary.Core
 {
-    public static partial class ICollectionExtensions
+    public static class ICollectionExtensions
     {
         #region Null / Empty
         public static bool IsNullOrEmpty<T>(this ICollection<T> collection)

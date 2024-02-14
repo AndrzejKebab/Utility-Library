@@ -2,7 +2,7 @@
 
 namespace UtilityLibrary.Core.LinqReplacement
 {
-	public static partial class ArrayExtensions
+	public static class ArrayExtensions
 	{
 		#region First / Last
 		/// <summary>
@@ -13,8 +13,7 @@ namespace UtilityLibrary.Core.LinqReplacement
 		/// <returns>The first element in the specified array or a default value if the array contains no elements.</returns>
 		public static T First<T>(this T[] array)
 		{
-			if (array.Length == 0) return default(T);
-			return array[0];
+			return array.Length == 0 ? default(T) : array[0];
 		}
 
 		/// <summary>
@@ -45,8 +44,7 @@ namespace UtilityLibrary.Core.LinqReplacement
 		/// <returns>The last element in the specified array or a default value if the array contains no elements.</returns>
 		public static T Last<T>(this T[] array)
 		{
-			if (array.Length == 0) return default(T);
-			return array[array.Length - 1];
+			return array.Length == 0 ? default(T) : array[^1];
 		}
 
 		/// <summary>

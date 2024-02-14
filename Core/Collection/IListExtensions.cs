@@ -4,9 +4,9 @@ using UtilityLibrary.Core.LinqReplacement;
 
 namespace UtilityLibrary.Core
 {
-    public static partial class IListExtensions
+    public static class IListExtensions
     {
-		internal static Random Rand = new Random();
+	    private static readonly Random random = new Random();
 		
 		public static int LastIndex<T>(this List<T> l) => l.Count - 1;
 
@@ -160,7 +160,7 @@ namespace UtilityLibrary.Core
 			list.RemoveAt(index);
 			return result;
 		}
-		
+
 		/// <summary>
 		/// Retrieves the element at the specified index in a list, with wrapping for out-of-bounds indices.
 		/// </summary>
@@ -182,7 +182,7 @@ namespace UtilityLibrary.Core
 		/// <returns>A random element from the list.</returns>
 		public static T GetRandomItem<T>(this IList<T> list)
 		{
-			int randomIndex = Rand.Next(0, list.Count);
+			var randomIndex = random.Next(0, list.Count);
 			return list[randomIndex];
 		}
 		#endregion
@@ -383,7 +383,7 @@ namespace UtilityLibrary.Core
 		{
 			if (list.Count == 0) throw new IndexOutOfRangeException("Cannot remove a random item from an empty list");
 
-			int index = Rand.Next(0, list.Count);
+			int index = random.Next(0, list.Count);
 			T item = list[index];
 			list.RemoveAt(index);
 
@@ -429,7 +429,7 @@ namespace UtilityLibrary.Core
 		/// <returns>A random item from the list, or the default value for the type if the list is empty.</returns>
 		public static T Random<T>(this IList<T> list)
 		{
-			var result = list.Count > 0 ? list[Rand.Next(0, list.Count)] : default(T);
+			var result = list.Count > 0 ? list[random.Next(0, list.Count)] : default(T);
 			return result;
 		}
 
@@ -477,7 +477,7 @@ namespace UtilityLibrary.Core
 
 			for (var i = 0; i < count; i++)
 			{
-				var item = list[Rand.Next(0, listCount)];
+				var item = list[random.Next(0, listCount)];
 				if (!allowRepeat && result.Contains(item))
 				{
 					i--;
@@ -505,7 +505,7 @@ namespace UtilityLibrary.Core
 				weightCount += weightGetter(list[i]);
 			}
 
-			var rand = Rand.Next(0, weightCount + 1);
+			var rand = random.Next(0, weightCount + 1);
 			weightCount = 0;
 			var index = -1;
 			do
@@ -555,7 +555,7 @@ namespace UtilityLibrary.Core
 				weightCount += weightGetter(list[i]);
 			}
 
-			var rand = (float)Rand.NextDouble() * weightCount;
+			var rand = (float)random.NextDouble() * weightCount;
 			weightCount = 0;
 			var index = -1;
 			do
@@ -617,7 +617,7 @@ namespace UtilityLibrary.Core
 		{
 			for (var i = list.Count - 1; i > 0; i--)
 			{
-				var j = Rand.Next(0, i + 1);
+				var j = random.Next(0, i + 1);
 				(list[j], list[i]) = (list[i], list[j]);
 			}
 		}

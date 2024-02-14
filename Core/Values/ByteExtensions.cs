@@ -4,7 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace UtilityLibrary.Core
 {
-	public static partial class ByteExtensions
+	public static class ByteExtensions
 	{
 		public static float PercentageOf(this byte part, byte whole)
 		{

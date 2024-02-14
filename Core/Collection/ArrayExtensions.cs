@@ -108,13 +108,13 @@ namespace UtilityLibrary.Core
 		#region Flatten / Unflatten
 		public static T[] FlattenFrom2D<T>(T[,] input)
 		{
-			int width = input.GetLength(0);
-			int height = input.GetLength(1);
+			var width = input.GetLength(0);
+			var height = input.GetLength(1);
 			var flattened = new T[width * height];
 
-			for (int y = 0; y < height; y++)
+			for (var y = 0; y < height; y++)
 			{
-				for (int x = 0; x < width; x++)
+				for (var x = 0; x < width; x++)
 				{
 					flattened[y * width + x] = input[x, y];
 				}
@@ -123,14 +123,13 @@ namespace UtilityLibrary.Core
 			return flattened;
 		}
 
-
 		public static T[,] UnflattenTo2D<T>(T[] input, int width, int height)
 		{
-			T[,] unflattened = new T[width, height];
+			var unflattened = new T[width, height];
 
-			for (int y = 0; y < height; y++)
+			for (var y = 0; y < height; y++)
 			{
-				for (int x = 0; x < width; x++)
+				for (var x = 0; x < width; x++)
 				{
 					unflattened[x, y] = input[y * width + x];
 

@@ -1,6 +1,6 @@
 {
     "name": "UtilityLibrary.Core",
-    "rootNamespace": "UtilityLibrary.Core",
+    "rootNamespace": "",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

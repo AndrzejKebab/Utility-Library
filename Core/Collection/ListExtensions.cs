@@ -5,7 +5,7 @@ using UtilityLibrary.Core.LinqReplacement;
 
 namespace UtilityLibrary.Core
 {
-    public static partial class ListExtensions
+    public static class ListExtensions
     {
 		/// <summary>
 		/// Removes duplicate elements from a list.

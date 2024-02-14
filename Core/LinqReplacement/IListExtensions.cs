@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace UtilityLibrary.Core.LinqReplacement
 {
-	public static partial class IListExtensions
+	public static class IListExtensions
 	{
 		#region First / Last
 		/// <summary>

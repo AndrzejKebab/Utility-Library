@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace UtilityLibrary.Core
 {
-	public static partial class DoubleExtensions
+	public static class DoubleExtensions
 	{
 		public static double PercentageOf(this double part, double whole)
 		{

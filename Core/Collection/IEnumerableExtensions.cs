@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace UtilityLibrary.Core
 {
-    public static partial class IEnumerableExtensions
+    public static class IEnumerableExtensions
     {
         #region Null / Empty
         public static bool IsNullOrEmpty<T>(this IEnumerable<T> source) => source == null || !source.Any();

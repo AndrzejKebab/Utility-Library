@@ -2,7 +2,7 @@ using System;
 
 namespace UtilityLibrary.Core
 {
-	public static partial class GenericExtensions
+	public static class GenericExtensions
 	{
 		#region Null / Empty
 		/// <summary>

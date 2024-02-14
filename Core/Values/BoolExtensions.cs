@@ -2,7 +2,7 @@
 
 namespace UtilityLibrary.Core
 {
-	public static partial class BoolExtensions
+	public static class BoolExtensions
 	{
 		#region Logic
 		#region And

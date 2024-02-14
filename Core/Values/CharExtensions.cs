@@ -1,6 +1,6 @@
 ﻿namespace UtilityLibrary.Core
 {
-    public static partial class CharExtensions
+    public static class CharExtensions
     {
         public static bool IsControl(this char @char)
         {

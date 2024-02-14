@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace UtilityLibrary.Core
 {
-    public static partial class EnumExtensions
+    public static class EnumExtensions
     {
 		#region Flag
 		/// <summary>

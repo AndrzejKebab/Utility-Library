@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace UtilityLibrary.Core
 {
-	public static partial class StringExtensions
+	public static class StringExtensions
 	{
 		#region Null / Empty / WhiteSpace
 		/// <summary>

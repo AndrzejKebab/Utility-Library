@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace UtilityLibrary.Core
 {
-	public static partial class IntExtensions
+	public static class IntExtensions
 	{
 		public static float PercentageOf(this int part, int whole)
 		{

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace UtilityLibrary.Core
 {
-	public static partial class TaskAwaiterExtensions
+	public static class TaskAwaiterExtensions
 	{
 		/// <summary>
 		/// Gets a TaskAwaiter that completes after a specified time period.

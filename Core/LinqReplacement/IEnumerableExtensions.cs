@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace UtilityLibrary.Core.LinqReplacement
 {
-    public static partial class IEnumerableExtensions
+    public static class IEnumerableExtensions
     {
 		#region Any
 		/// <summary>
@@ -235,7 +235,7 @@ namespace UtilityLibrary.Core.LinqReplacement
 		
 		#region To Array
 		/// <summary>
-		/// Creates an array from an IEnumerable<T>.
+		/// Creates an array from an IEnumerable.
 		/// </summary>
 		/// <typeparam name="T">The type of the elements of source.</typeparam>
 		/// <param name="source">The <see cref="IEnumerable{T}"/> to create an array from.</param>
@@ -253,11 +253,11 @@ namespace UtilityLibrary.Core.LinqReplacement
 
 		#region To List
 		/// <summary>
-		/// Creates a List<T> from an IEnumerable<T>.
+		/// Converts an IEnumerable to a List.
 		/// </summary>
 		/// <typeparam name="T">The type of the elements of source.</typeparam>
-		/// <param name="source">The <see cref="IEnumerable{T}"/> to create a List<T> from.</param>
-		/// <returns>A List<T> that contains elements from the input sequence.</returns>
+		/// <param name="source">The <see cref="IEnumerable{T}"/> to be converted to a List.</param>
+		/// <returns>A List that contains elements from the input sequence.</returns>
 		public static List<T> ToList<T>(this IEnumerable<T> source)
 		{
 			var list = new List<T>();

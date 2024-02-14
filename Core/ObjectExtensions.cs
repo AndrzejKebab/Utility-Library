@@ -4,7 +4,7 @@ using System.Globalization;
 
 namespace UtilityLibrary.Core
 {
-	public static partial class ObjectExtensions
+	public static class ObjectExtensions
 	{
 		#region Null
 		/// <summary>

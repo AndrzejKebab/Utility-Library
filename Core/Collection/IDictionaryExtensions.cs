@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace UtilityLibrary.Core
 {
-    public static partial class IDictionaryExtensions
+    public static class IDictionaryExtensions
     {
         #region Null / Empty
         public static bool IsNullOrEmpty<TKey, TValue>(this IDictionary<TKey, TValue> dictionary) 
